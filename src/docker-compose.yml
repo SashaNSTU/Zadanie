@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.8-alpine3.18
+    environment:
+      POSTGRES_DB: "TestZadanie"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "root"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
+      - TestZadanie-data:/var/lib/postgresql/data
+    ports:
+      - "8080:5432"
+volumes:
+  TestZadanie-data:
